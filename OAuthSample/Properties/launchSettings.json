@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "OAuthSample (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "OAuthSample (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
