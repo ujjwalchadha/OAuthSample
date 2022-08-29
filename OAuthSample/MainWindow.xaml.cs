@@ -35,7 +35,12 @@ namespace OAuthSample
                 "redirect_uri=ms-store://oauthsample");
 
             // Launch the URI
-            await Windows.System.Launcher.LaunchUriAsync(uriToLaunch);
+            var responseFuture = await Auth.AuthorizeInBrowser(uriToLaunch, new Uri("ms-store://oauthsample"));
+            responseFuture.OnAuthComplete += (Uri responseUri) =>
+            {
+                var callbackParams = System.Web.HttpUtility.ParseQueryString(responseUri.Query);
+                codeText.Text = "Hello " + callbackParams["code"];
+            };
         }
 
         internal void OnUriCallback(Uri uri)

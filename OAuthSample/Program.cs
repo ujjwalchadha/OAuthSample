@@ -58,7 +58,8 @@ namespace OAuthSample
                 var protocolArgs = (ProtocolActivatedEventArgs)args.Data;
                 dispatcherQueue.TryEnqueue(() =>
                 {
-                    App.Window.OnUriCallback(protocolArgs.Uri);
+                    //App.Window.OnUriCallback(protocolArgs.Uri);
+                    Auth.RaiseAuthResponseFutureEvent(new Uri(protocolArgs.Uri.GetLeftPart(UriPartial.Path)), protocolArgs.Uri);
                 });
             }
         }
